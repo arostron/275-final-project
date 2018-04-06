@@ -18,9 +18,9 @@ def produceVisableGraph(tree):
 	edges = list()
 
 	def crawl(current):
-		nodes.add(current.coord)
+		nodes.add(current.node_type +" @ " + str(current.coord))
 		for kid in current.children:
-			edges.append((current.coord, kid.coord))
+			edges.append((current.node_type +" @ " + str(current.coord), kid.node_type +" @ " + str(kid.coord)))
 			crawl(kid)
 
 	crawl(tree.start)
