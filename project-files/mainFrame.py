@@ -26,20 +26,20 @@ def produceVisableGraph(tree):
 
 		# for all kids add an edge to the kid
 		for kid in current.children:
-			if not (hasattr(current, "color") or :hasattr(kid, "color")):
+			if not (hasattr(current, "color") or hasattr(kid, "color")):
 				#neither node has a color, add it as such
 				edges.append((\
 				current.node_type +" @ " + str(current.coord), \
 				kid.node_type +" @ " + str(kid.coord) \
 				))
-			elif :
+			elif (hasattr(current, "color") and hasattr(kid, "color"):
 				# both have color
 				edges.append((\
 				current.node_type + " " + current.color +" @\n" + str(current.coord), \
 				kid.node_type + " " + kid.color +" @\n" + str(kid.coord) \
 				))
 
-			elif :
+			elif (hasattr(current, "color"):
 				# only parent has color
 				edges.append((\
 				current.node_type + " " + current.color +" @\n" + str(current.coord), \
