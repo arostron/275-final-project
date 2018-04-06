@@ -17,8 +17,8 @@ def produceVisableGraph(tree):
 
 	def crawl(current):
 		nodes.add(current.coord)
-		for kid in corrent.children:
-			ednges.append((current.coord, kid.coord))
+		for kid in current.children:
+			edges.append((current.coord, kid.coord))
 			crawl(kid)
 
 	crawl(tree.start)
@@ -41,5 +41,5 @@ if __name__ == '__main__':
 	"""
 
 	# a new way of rendering graphs...?
-	
+
 	renderGraph(produceVisableGraph(tree1))
