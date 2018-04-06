@@ -11,7 +11,9 @@ def setup(filename="Map.h"):
 	return busha, bushb
 
 def produceVisableGraph(tree):
-	# crawl through produced tree
+	"""
+	Extracts the nodes and edges from a given tree then returns the graph
+	"""
 	nodes = set()
 	edges = list()
 
@@ -26,6 +28,9 @@ def produceVisableGraph(tree):
 
 
 def renderGraph(g):
+	"""
+	Bring up a PDF of the given graph g
+	"""
 	visualize.get_dot_format(g).render(view=True)
 
 
