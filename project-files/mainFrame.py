@@ -57,16 +57,10 @@ def produceVisableGraph(tree):
 	crawl(tree.start)
 	return graph.Graph(nodes, edges)
 
-
 def renderGraph(g):
 	"""
 	Bring up a PDF of the given graph g
 	"""
-	visualize.get_dot_format(g).render(view=True)
-
-
-if __name__ == '__main__':
-	tree1, tree2 = setup()
 
 	# the old way of redering graphs
 	"""
@@ -76,6 +70,9 @@ if __name__ == '__main__':
 	renderGraph(graph_for_viz)
 	"""
 
-	# a new way of rendering graphs...?
+	visualize.get_dot_format(g).render(view=True)
 
+
+if __name__ == '__main__':
+	tree1, tree2 = setup()
 	renderGraph(produceVisableGraph(tree1))
