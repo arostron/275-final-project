@@ -18,9 +18,40 @@ def produceVisableGraph(tree):
 	edges = list()
 
 	def crawl(current):
-		nodes.add(current.node_type +" @ " + str(current.coord))
+		# add a node
+		if hasattr(current, "color"):
+			nodes.add(current.node_type + " " + current.color +" @\n" + str(current.coord))
+		else:
+			nodes.add(current.node_type +" @ " + str(current.coord))
+
+		# for all kids add an edge to the kid
 		for kid in current.children:
-			edges.append((current.node_type +" @ " + str(current.coord), kid.node_type +" @ " + str(kid.coord)))
+			if not (hasattr(current, "color") or :hasattr(kid, "color")):
+				#neither node has a color, add it as such
+				edges.append((\
+				current.node_type +" @ " + str(current.coord), \
+				kid.node_type +" @ " + str(kid.coord) \
+				))
+			elif :
+				# both have color
+				edges.append((\
+				current.node_type + " " + current.color +" @\n" + str(current.coord), \
+				kid.node_type + " " + kid.color +" @\n" + str(kid.coord) \
+				))
+
+			elif :
+				# only parent has color
+				edges.append((\
+				current.node_type + " " + current.color +" @\n" + str(current.coord), \
+				kid.node_type +" @ " + str(kid.coord) \
+				))
+			else:
+				# only kid has color
+				edges.append((\
+				current.node_type +" @ " + str(current.coord), \
+				kid.node_type + " " + kid.color +" @\n" + str(kid.coord) \
+				))
+			#crawl to all children
 			crawl(kid)
 
 	crawl(tree.start)
