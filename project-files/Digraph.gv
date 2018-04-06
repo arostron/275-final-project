@@ -1,196 +1,429 @@
 digraph {
 	node [shape=circle]
-	"button @ (7, 6)"
-	"button @ (7, 6)" -> "grass @ (6, 6)"
-	"switch @ (9, 6)"
-	"door @ (10, 11)"
-	"door @ (10, 11)" -> "door @ (9, 11)"
-	"door @ (15, 9)"
-	"door @ (15, 9)" -> "door @ (15, 8)"
-	"button @ (3, 0)"
-	"door @ (11, 5)"
-	"door @ (11, 5)" -> "door @ (12, 5)"
-	"door @ (11, 5)" -> "door @ (11, 6)"
-	"door @ (12, 5)"
-	"door @ (12, 5)" -> "door @ (13, 5)"
-	"grass @ (6, 6)"
-	"grass @ (6, 6)" -> "door @ (5, 6)"
-	"door @ (9, 9)"
-	"door @ (9, 9)" -> "door @ (9, 8)"
-	"switch @ (3, 11)"
-	"grass @ (8, 0)"
-	"door @ (7, 10)"
-	"door @ (7, 10)" -> "switch @ (7, 11)"
-	"door @ (15, 4)"
-	"door @ (15, 4)" -> "door @ (15, 3)"
-	"door @ (4, 3)"
-	"door @ (4, 3)" -> "grass @ (3, 3)"
-	"door @ (4, 3)" -> "door @ (4, 2)"
-	"door @ (15, 2)"
-	"door @ (15, 2)" -> "grass @ (14, 2)"
-	"door @ (15, 8)"
-	"door @ (15, 8)" -> "door @ (15, 7)"
-	"door @ (13, 9)"
-	"door @ (13, 9)" -> "door @ (13, 10)"
-	"door @ (11, 9)"
-	"door @ (11, 9)" -> "door @ (11, 10)"
-	"button @ (4, 1)"
-	"button @ (4, 1)" -> "door @ (5, 1)"
-	"door @ (11, 8)"
-	"door @ (11, 8)" -> "door @ (11, 9)"
-	"door @ (11, 10)"
-	"door @ (11, 10)" -> "door @ (11, 11)"
-	"door @ (7, 8)"
-	"door @ (7, 8)" -> "door @ (7, 9)"
-	"switch @ (2, 3)"
-	"switch @ (2, 3)" -> "grass @ (2, 2)"
-	"door @ (13, 10)"
-	"door @ (13, 10)" -> "grass @ (13, 11)"
-	"button @ (2, 1)"
-	"door @ (1, 8)"
-	"door @ (1, 8)" -> "door @ (1, 9)"
-	"door @ (9, 7)"
-	"door @ (9, 7)" -> "switch @ (9, 6)"
-	"door @ (5, 5)"
-	"door @ (5, 5)" -> "door @ (4, 5)"
-	"door @ (13, 5)"
-	"door @ (13, 5)" -> "door @ (13, 6)"
-	"door @ (13, 5)" -> "switch @ (13, 4)"
-	"door @ (8, 4)"
-	"door @ (8, 4)" -> "grass @ (9, 4)"
-	"grass @ (13, 11)"
-	"grass @ (13, 11)" -> "door @ (15, 11)"
-	"door @ (15, 7)"
-	"door @ (15, 7)" -> "door @ (15, 6)"
-	"grass @ (10, 3)"
-	"door @ (7, 5)"
-	"door @ (7, 5)" -> "button @ (7, 6)"
-	"door @ (15, 11)"
-	"door @ (15, 11)" -> "door @ (15, 10)"
-	"door @ (1, 9)"
-	"door @ (1, 9)" -> "door @ (1, 10)"
+	"door WHITE @
+(4, 3)"
+	"door WHITE @
+(4, 3)" -> "grass @ (3, 3)"
+	"door WHITE @
+(4, 3)" -> "door YELLOW @
+(4, 2)"
+	"door RED @
+(15, 9)"
+	"door RED @
+(15, 9)" -> "door PINK @
+(15, 8)"
+	"door PINK @
+(11, 11)"
+	"door PINK @
+(11, 11)" -> "door RED @
+(10, 11)"
+	"button RED @
+(12, 0)"
+	"button RED @
+(12, 0)" -> "door WHITE @
+(13, 0)"
 	"grass @ (10, 2)"
-	"grass @ (10, 2)" -> "button @ (9, 3)"
-	"door @ (7, 9)"
-	"door @ (7, 9)" -> "door @ (7, 10)"
-	"door @ (10, 1)"
-	"door @ (10, 1)" -> "grass @ (10, 2)"
-	"door @ (10, 1)" -> "switch @ (10, 0)"
-	"door @ (4, 5)"
-	"door @ (4, 5)" -> "grass @ (3, 5)"
-	"door @ (9, 11)"
-	"door @ (9, 11)" -> "door @ (9, 10)"
-	"end @ (0, 5)"
-	"door @ (15, 3)"
-	"door @ (15, 3)" -> "door @ (15, 2)"
-	"switch @ (7, 11)"
-	"switch @ (1, 11)"
-	"grass @ (7, 3)"
-	"grass @ (7, 3)" -> "door @ (5, 3)"
-	"grass @ (7, 3)" -> "door @ (8, 4)"
-	"grass @ (7, 3)" -> "door @ (7, 5)"
-	"button @ (0, 0)"
-	"button @ (0, 0)" -> "button @ (0, 1)"
-	"door @ (4, 2)"
-	"door @ (4, 2)" -> "button @ (4, 1)"
-	"grass @ (14, 2)"
-	"grass @ (14, 2)" -> "door @ (13, 2)"
-	"door @ (13, 8)"
-	"door @ (13, 8)" -> "door @ (13, 9)"
-	"door @ (5, 6)"
-	"door @ (5, 6)" -> "door @ (5, 5)"
-	"grass @ (9, 4)"
-	"grass @ (9, 4)" -> "door @ (9, 5)"
-	"door @ (11, 7)"
-	"door @ (11, 7)" -> "door @ (11, 8)"
-	"switch @ (14, 0)"
-	"grass @ (6, 8)"
-	"grass @ (6, 8)" -> "door @ (7, 8)"
-	"button @ (9, 3)"
-	"button @ (9, 3)" -> "grass @ (10, 3)"
-	"button @ (9, 3)" -> "door @ (8, 3)"
-	"button @ (0, 1)"
-	"button @ (0, 1)" -> "grass @ (0, 2)"
-	"grass @ (2, 2)"
-	"grass @ (2, 2)" -> "button @ (2, 0)"
-	"grass @ (2, 2)" -> "button @ (0, 0)"
-	"door @ (15, 10)"
-	"door @ (15, 10)" -> "door @ (15, 9)"
-	"grass @ (1, 7)"
-	"grass @ (1, 7)" -> "door @ (1, 8)"
-	"door @ (5, 3)"
-	"door @ (5, 3)" -> "door @ (4, 3)"
-	"door @ (11, 11)"
-	"door @ (11, 11)" -> "door @ (10, 11)"
-	"door @ (3, 10)"
-	"door @ (3, 10)" -> "switch @ (3, 11)"
-	"door @ (3, 9)"
-	"door @ (3, 9)" -> "door @ (3, 10)"
+	"grass @ (10, 2)" -> "button WHITE @
+(9, 3)"
+	"switch PINK @
+(5, 11)"
+	"door RED @
+(10, 11)"
+	"door RED @
+(10, 11)" -> "door PINK @
+(9, 11)"
 	"grass @ (5, 9)"
-	"grass @ (5, 9)" -> "door @ (5, 10)"
-	"button @ (12, 0)"
-	"button @ (12, 0)" -> "door @ (13, 0)"
-	"door @ (13, 6)"
-	"door @ (13, 6)" -> "door @ (13, 7)"
-	"button @ (2, 0)"
-	"button @ (2, 0)" -> "button @ (3, 0)"
-	"button @ (2, 0)" -> "button @ (2, 1)"
-	"start @ (7, 0)"
-	"start @ (7, 0)" -> "button @ (8, 1)"
-	"start @ (7, 0)" -> "door @ (7, 2)"
-	"door @ (5, 1)"
-	"door @ (5, 1)" -> "button @ (5, 0)"
-	"door @ (8, 3)"
-	"grass @ (3, 5)"
-	"grass @ (3, 5)" -> "door @ (5, 8)"
-	"grass @ (3, 5)" -> "door @ (3, 9)"
-	"grass @ (3, 5)" -> "door @ (1, 6)"
-	"switch @ (5, 11)"
-	"door @ (13, 0)"
-	"door @ (13, 0)" -> "switch @ (14, 0)"
-	"button @ (8, 1)"
-	"button @ (8, 1)" -> "grass @ (8, 0)"
-	"grass @ (3, 3)"
-	"grass @ (3, 3)" -> "switch @ (2, 3)"
-	"door @ (9, 8)"
-	"door @ (9, 8)" -> "door @ (9, 7)"
-	"door @ (9, 10)"
-	"door @ (9, 10)" -> "door @ (9, 9)"
-	"door @ (13, 2)"
-	"door @ (13, 2)" -> "grass @ (12, 2)"
-	"door @ (9, 5)"
-	"door @ (9, 5)" -> "switch @ (10, 5)"
-	"door @ (5, 8)"
-	"door @ (5, 8)" -> "grass @ (5, 9)"
-	"door @ (5, 8)" -> "grass @ (6, 8)"
-	"button @ (5, 0)"
-	"switch @ (13, 4)"
-	"door @ (5, 10)"
-	"door @ (5, 10)" -> "switch @ (5, 11)"
-	"door @ (13, 7)"
-	"door @ (13, 7)" -> "door @ (13, 8)"
-	"door @ (11, 6)"
-	"door @ (11, 6)" -> "door @ (11, 7)"
-	"door @ (15, 6)"
-	"door @ (15, 6)" -> "door @ (15, 5)"
-	"switch @ (10, 5)"
-	"switch @ (10, 5)" -> "door @ (11, 5)"
-	"door @ (15, 5)"
-	"door @ (15, 5)" -> "door @ (15, 4)"
-	"door @ (1, 6)"
-	"door @ (1, 6)" -> "grass @ (1, 7)"
-	"door @ (1, 6)" -> "door @ (1, 5)"
-	"door @ (7, 2)"
-	"door @ (7, 2)" -> "grass @ (7, 3)"
+	"grass @ (5, 9)" -> "door YELLOW @
+(5, 10)"
+	"door GREEN @
+(12, 5)"
+	"door GREEN @
+(12, 5)" -> "door PINK @
+(13, 5)"
+	"door YELLOW @
+(13, 2)"
+	"door YELLOW @
+(13, 2)" -> "grass @ (12, 2)"
+	"door BLUE @
+(5, 8)"
+	"door BLUE @
+(5, 8)" -> "grass @ (5, 9)"
+	"door BLUE @
+(5, 8)" -> "grass @ (6, 8)"
+	"door RED @
+(13, 8)"
+	"door RED @
+(13, 8)" -> "door PINK @
+(13, 9)"
+	"door PINK @
+(9, 11)"
+	"door PINK @
+(9, 11)" -> "door RED @
+(9, 10)"
+	"door ORANGE @
+(5, 3)"
+	"door ORANGE @
+(5, 3)" -> "door WHITE @
+(4, 3)"
+	"door GREEN @
+(15, 11)"
+	"door GREEN @
+(15, 11)" -> "door PINK @
+(15, 10)"
+	"switch RED @
+(14, 0)"
+	"door WHITE @
+(13, 0)"
+	"door WHITE @
+(13, 0)" -> "switch RED @
+(14, 0)"
+	"grass @ (7, 3)"
+	"grass @ (7, 3)" -> "door ORANGE @
+(5, 3)"
+	"grass @ (7, 3)" -> "door ORANGE @
+(8, 4)"
+	"grass @ (7, 3)" -> "door BLUE @
+(7, 5)"
+	"door PINK @
+(9, 9)"
+	"door PINK @
+(9, 9)" -> "door RED @
+(9, 8)"
+	"door WHITE @
+(3, 9)"
+	"door WHITE @
+(3, 9)" -> "door PINK @
+(3, 10)"
+	"door WHITE @
+(1, 8)"
+	"door WHITE @
+(1, 8)" -> "door YELLOW @
+(1, 9)"
+	"switch PINK @
+(13, 4)"
+	"button RED @
+(8, 1)"
+	"button RED @
+(8, 1)" -> "grass @ (8, 0)"
+	"door RED @
+(13, 6)"
+	"door RED @
+(13, 6)" -> "door PINK @
+(13, 7)"
+	"door YELLOW @
+(1, 9)"
+	"door YELLOW @
+(1, 9)" -> "door BLUE @
+(1, 10)"
+	"door BLUE @
+(9, 5)"
+	"door BLUE @
+(9, 5)" -> "switch PINK @
+(10, 5)"
+	"door WHITE @
+(5, 1)"
+	"door WHITE @
+(5, 1)" -> "button RED @
+(5, 0)"
+	"door PINK @
+(5, 5)"
+	"door PINK @
+(5, 5)" -> "door GREEN @
+(4, 5)"
+	"end @ (0, 5)"
+	"door YELLOW @
+(7, 9)"
+	"door YELLOW @
+(7, 9)" -> "door WHITE @
+(7, 10)"
+	"grass @ (6, 8)"
+	"grass @ (6, 8)" -> "door GREEN @
+(7, 8)"
+	"button PINK @
+(2, 0)"
+	"button PINK @
+(2, 0)" -> "button YELLOW @
+(3, 0)"
+	"button PINK @
+(2, 0)" -> "button TEAL @
+(2, 1)"
+	"door YELLOW @
+(5, 10)"
+	"door YELLOW @
+(5, 10)" -> "switch PINK @
+(5, 11)"
+	"button GREEN @
+(0, 0)"
+	"button GREEN @
+(0, 0)" -> "button ORANGE @
+(0, 1)"
+	"door WHITE @
+(8, 3)"
+	"grass @ (6, 6)"
+	"grass @ (6, 6)" -> "door RED @
+(5, 6)"
+	"door RED @
+(9, 10)"
+	"door RED @
+(9, 10)" -> "door PINK @
+(9, 9)"
+	"door GREEN @
+(7, 8)"
+	"door GREEN @
+(7, 8)" -> "door YELLOW @
+(7, 9)"
+	"door ORANGE @
+(8, 4)"
+	"door ORANGE @
+(8, 4)" -> "grass @ (9, 4)"
+	"door RED @
+(11, 7)"
+	"door RED @
+(11, 7)" -> "door PINK @
+(11, 8)"
+	"door TEAL @
+(1, 5)"
+	"door TEAL @
+(1, 5)" -> "end @ (0, 5)"
 	"grass @ (0, 2)"
-	"switch @ (10, 0)"
+	"door WHITE @
+(7, 10)"
+	"door WHITE @
+(7, 10)" -> "switch WHITE @
+(7, 11)"
+	"switch GREEN @
+(1, 11)"
+	"grass @ (3, 5)"
+	"grass @ (3, 5)" -> "door BLUE @
+(5, 8)"
+	"grass @ (3, 5)" -> "door WHITE @
+(3, 9)"
+	"grass @ (3, 5)" -> "door YELLOW @
+(1, 6)"
+	"door PINK @
+(15, 10)"
+	"door PINK @
+(15, 10)" -> "door RED @
+(15, 9)"
+	"door RED @
+(9, 8)"
+	"door RED @
+(9, 8)" -> "door GREEN @
+(9, 7)"
+	"start @ (7, 0)"
+	"start @ (7, 0)" -> "button RED @
+(8, 1)"
+	"start @ (7, 0)" -> "door RED @
+(7, 2)"
+	"button BLUE @
+(7, 6)"
+	"button BLUE @
+(7, 6)" -> "grass @ (6, 6)"
+	"switch BLUE @
+(9, 6)"
+	"grass @ (3, 3)"
+	"grass @ (3, 3)" -> "switch WHITE @
+(2, 3)"
 	"grass @ (12, 2)"
-	"grass @ (12, 2)" -> "door @ (12, 1)"
-	"grass @ (12, 2)" -> "door @ (10, 1)"
-	"door @ (1, 10)"
-	"door @ (1, 10)" -> "switch @ (1, 11)"
-	"door @ (1, 5)"
-	"door @ (1, 5)" -> "end @ (0, 5)"
-	"door @ (12, 1)"
-	"door @ (12, 1)" -> "button @ (12, 0)"
+	"grass @ (12, 2)" -> "door PINK @
+(12, 1)"
+	"grass @ (12, 2)" -> "door ORANGE @
+(10, 1)"
+	"button YELLOW @
+(3, 0)"
+	"door PINK @
+(13, 9)"
+	"door PINK @
+(13, 9)" -> "door GREEN @
+(13, 10)"
+	"door RED @
+(11, 10)"
+	"door RED @
+(11, 10)" -> "door PINK @
+(11, 11)"
+	"door PINK @
+(11, 5)"
+	"door PINK @
+(11, 5)" -> "door GREEN @
+(12, 5)"
+	"door PINK @
+(11, 5)" -> "door GREEN @
+(11, 6)"
+	"door PINK @
+(11, 8)"
+	"door PINK @
+(11, 8)" -> "door GREEN @
+(11, 9)"
+	"door GREEN @
+(11, 6)"
+	"door GREEN @
+(11, 6)" -> "door RED @
+(11, 7)"
+	"switch WHITE @
+(7, 11)"
+	"door RED @
+(5, 6)"
+	"door RED @
+(5, 6)" -> "door PINK @
+(5, 5)"
+	"grass @ (2, 2)"
+	"grass @ (2, 2)" -> "button PINK @
+(2, 0)"
+	"grass @ (2, 2)" -> "button GREEN @
+(0, 0)"
+	"door GREEN @
+(15, 4)"
+	"door GREEN @
+(15, 4)" -> "door PINK @
+(15, 3)"
+	"switch WHITE @
+(2, 3)"
+	"switch WHITE @
+(2, 3)" -> "grass @ (2, 2)"
+	"door GREEN @
+(13, 10)"
+	"door GREEN @
+(13, 10)" -> "grass @ (13, 11)"
+	"door GREEN @
+(11, 9)"
+	"door GREEN @
+(11, 9)" -> "door RED @
+(11, 10)"
+	"door RED @
+(15, 5)"
+	"door RED @
+(15, 5)" -> "door GREEN @
+(15, 4)"
+	"button ORANGE @
+(0, 1)"
+	"button ORANGE @
+(0, 1)" -> "grass @ (0, 2)"
+	"door GREEN @
+(9, 7)"
+	"door GREEN @
+(9, 7)" -> "switch BLUE @
+(9, 6)"
+	"button RED @
+(5, 0)"
+	"door YELLOW @
+(4, 2)"
+	"door YELLOW @
+(4, 2)" -> "button TEAL @
+(4, 1)"
+	"door ORANGE @
+(10, 1)"
+	"door ORANGE @
+(10, 1)" -> "grass @ (10, 2)"
+	"door ORANGE @
+(10, 1)" -> "switch ORANGE @
+(10, 0)"
+	"door PINK @
+(13, 5)"
+	"door PINK @
+(13, 5)" -> "door RED @
+(13, 6)"
+	"door PINK @
+(13, 5)" -> "switch PINK @
+(13, 4)"
+	"door PINK @
+(12, 1)"
+	"door PINK @
+(12, 1)" -> "button RED @
+(12, 0)"
+	"door GREEN @
+(15, 7)"
+	"door GREEN @
+(15, 7)" -> "door PINK @
+(15, 6)"
+	"door RED @
+(15, 2)"
+	"door RED @
+(15, 2)" -> "grass @ (14, 2)"
+	"door RED @
+(7, 2)"
+	"door RED @
+(7, 2)" -> "grass @ (7, 3)"
+	"grass @ (9, 4)"
+	"grass @ (9, 4)" -> "door BLUE @
+(9, 5)"
+	"door PINK @
+(15, 6)"
+	"door PINK @
+(15, 6)" -> "door RED @
+(15, 5)"
+	"switch PINK @
+(10, 5)"
+	"switch PINK @
+(10, 5)" -> "door PINK @
+(11, 5)"
+	"door PINK @
+(3, 10)"
+	"door PINK @
+(3, 10)" -> "switch YELLOW @
+(3, 11)"
+	"grass @ (14, 2)"
+	"grass @ (14, 2)" -> "door YELLOW @
+(13, 2)"
+	"button TEAL @
+(2, 1)"
+	"grass @ (8, 0)"
+	"door GREEN @
+(4, 5)"
+	"door GREEN @
+(4, 5)" -> "grass @ (3, 5)"
+	"door PINK @
+(13, 7)"
+	"door PINK @
+(13, 7)" -> "door RED @
+(13, 8)"
+	"door PINK @
+(15, 8)"
+	"door PINK @
+(15, 8)" -> "door GREEN @
+(15, 7)"
+	"door BLUE @
+(1, 10)"
+	"door BLUE @
+(1, 10)" -> "switch GREEN @
+(1, 11)"
+	"door YELLOW @
+(1, 6)"
+	"door YELLOW @
+(1, 6)" -> "grass @ (1, 7)"
+	"door YELLOW @
+(1, 6)" -> "door TEAL @
+(1, 5)"
+	"grass @ (13, 11)"
+	"grass @ (13, 11)" -> "door GREEN @
+(15, 11)"
+	"grass @ (10, 3)"
+	"button WHITE @
+(9, 3)"
+	"button WHITE @
+(9, 3)" -> "grass @ (10, 3)"
+	"button WHITE @
+(9, 3)" -> "door WHITE @
+(8, 3)"
+	"switch YELLOW @
+(3, 11)"
+	"switch ORANGE @
+(10, 0)"
+	"door BLUE @
+(7, 5)"
+	"door BLUE @
+(7, 5)" -> "button BLUE @
+(7, 6)"
+	"button TEAL @
+(4, 1)"
+	"button TEAL @
+(4, 1)" -> "door WHITE @
+(5, 1)"
+	"door PINK @
+(15, 3)"
+	"door PINK @
+(15, 3)" -> "door RED @
+(15, 2)"
+	"grass @ (1, 7)"
+	"grass @ (1, 7)" -> "door WHITE @
+(1, 8)"
 }

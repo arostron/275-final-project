@@ -32,14 +32,14 @@ def produceVisableGraph(tree):
 				current.node_type +" @ " + str(current.coord), \
 				kid.node_type +" @ " + str(kid.coord) \
 				))
-			elif (hasattr(current, "color") and hasattr(kid, "color"):
+			elif hasattr(current, "color") and hasattr(kid, "color"):
 				# both have color
 				edges.append((\
 				current.node_type + " " + current.color +" @\n" + str(current.coord), \
 				kid.node_type + " " + kid.color +" @\n" + str(kid.coord) \
 				))
 
-			elif (hasattr(current, "color"):
+			elif hasattr(current, "color"):
 				# only parent has color
 				edges.append((\
 				current.node_type + " " + current.color +" @\n" + str(current.coord), \
