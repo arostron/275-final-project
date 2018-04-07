@@ -23,7 +23,7 @@ class MetaBush:
     def mapToMetaBush(self, map_array, width, height):
 
         def grassFlood(x,y,node):
-            new_grass.contained_coords.add((i,j))
+            new_grass.contained_coords.append((i,j))
             map_array[x][y] += 1000
             surround = [(x+1,y),(x,y+1),(x-1,y),(x,y-1)]
             for pair in surround:
@@ -93,7 +93,7 @@ class Node:
 class Grass(Node):
     def __init__(self,X,Y,grass_type = "grass"):
         super().__init__(X,Y,grass_type)
-        self.contained_coords = set()
+        self.contained_coords = []
 
 class Door(Node):
     def __init__(self,X,Y,color,inverse):
