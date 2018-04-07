@@ -2,7 +2,8 @@ class MetaBush:
     def __init__(self,map_array, width, height):
         # A dictionary of nodes with the tuple names as keys
         print("---------------")
-        self.nodes = []
+        self.nodes = set()
+        self.translate = dict()
         # A dictionary connect
         self.connect = []
         #
@@ -10,7 +11,7 @@ class MetaBush:
 
         self.convert = {0:"RED",1:"ORANGE",2:'PINK',3:'WHITE',4:'YELLOW',5:'GREEN',6:'TEAL',7:'BLUE'}
 
-        self.grasses = []
+        self.grasses = [] #elements of this dictionary
         self.doors = {"RED":[],"ORANGE":[],'PINK':[],'WHITE':[],'YELLOW':[],'GREEN':[],'TEAL':[],'BLUE':[]}
         self.switchs = {"RED":[],"ORANGE":[],'PINK':[],'WHITE':[],'YELLOW':[],'GREEN':[],'TEAL':[],'BLUE':[]}
         self.buttons = {"RED":[],"ORANGE":[],'PINK':[],'WHITE':[],'YELLOW':[],'GREEN':[],'TEAL':[],'BLUE':[]}
@@ -18,143 +19,69 @@ class MetaBush:
 
         self.mapToMetaBush(map_array, width, height)
 
-    def mapToMetaBush(self,map_array, width, height):
-        '''
-        DESCRIPTION
-        This function converts a given map into a MetaBush.
+    def mapToMetaBush(map_array, width, height):
 
-        ARGUMENTS
-        The Map consists of an array of row arrays.
-        '''
-        # TODO implement the fill sorting algorithem
-        '''
-        Flood-fill (node, target-color, replacement-color):
-        If target-color is equal to replacement-color, return.
-        If the color of node is not equal to target-color, return.
-        Set the color of node to replacement-color.
-        Perform Flood-fill (one step to the south of node, target-color, replacement-color).
-        Perform Flood-fill (one step to the north of node, target-color, replacement-color).
-        Perform Flood-fill (one step to the west of node, target-color, replacement-color).
-        Perform Flood-fill (one step to the east of node, target-color, replacement-color).
-        '''
-        def flood(x,y,pastnode):
-            _ = input("_________recursive call_________")
-            value = map_array[x][y]
-
-            point_type = value % 10
-            print("type:", point_type)
-            print("X,Y", x, y)
-            print()
-
-            if value >= 1000:
-                #if here an if component.... (not grass)
-                if point_type != 0:
-                    print("Connection?")
-                    self.connect.append((pastnode.coord,(x,y)))
-                return
-
+        def grassFlood(x,y,node):
+            new_grass.contained_coords.add((i,j))
             map_array[x][y] += 1000
-            color = self.convert[(((value - point_type)//10)%10)]
-            inverse = value >= 100
-
-            self.nodes.append((x,y))
-            self.connect.append((pastnode.coord,(x,y)))
-
-            #0grass -- 1wall -- 3switch -- 4door -- 5Pp -- 6end -- 7 Player start
-            if point_type == 0 and not isinstance(pastnode, Grass):
-                # grass
-                #print("process grass")
-                new_node = Grass(x,y)
-                self.grasses.append((x,y))
-                pastnode.children.append(new_node)
-                pastnode = new_node
-            elif point_type == 4:
-                # Door
-                #print("process door")
-                new_node = Door(x,y,color,inverse)
-                self.doors[color].append((x,y))
-                pastnode.children.append(new_node)
-                pastnode = new_node
-            elif point_type == 3:
-                # swith
-                #print("process switch")
-                new_node = Switch(x,y,color)
-                self.switchs[color].append((x,y))
-                pastnode.children.append(new_node)
-                pastnode = new_node
-            elif point_type == 5:
-                # Button
-                #print("process button")
-                new_node = Button(x,y,color)
-                self.buttons[color].append((x,y))
-                pastnode.children.append(new_node)
-                pastnode = new_node
-            elif point_type == 6:
-                #print("process end")
-                new_node = Grass(x,y,"end")
-                pastnode.children.append(new_node)
-                pastnode = new_node
-
-            # list of 4 destinations //
-            # if the destination is invalid remove it (filed or bounds or wall)
-            # if element is a component move to the back of the list
-            # if its grass do the recursion call
-
-            for element in order_destination(x,y):
-                flood(element[0], element[1], pastnode)
-
-
-        def order_destination(x,y):
-            """
-            look at all adjacent tiles and order them in order of proper recursion call
-
-            returns a list of co-ordinates of appropreate calls
-            """
-            adj = []
-            adj.append((x+1,y))
-            adj.append((x,y+1))
-            adj.append((x-1,y))
-            adj.append((x,y-1))
-
-            order = []
-
-            for point in adj: # types each point
-                i, j = point[0], point[1]
-                if (i < 0) or (i >= width) or (j < 0) or (j >= height):
-                    # Out of bounds, dont add to order
+            surround = [(x+1,y),(x,y+1),(x-1,y),(x,y-1)]
+            for pair in surround:
+                if (pair[0] < 0) || (pair[1] < 0) || (pair[0] >= width) || (pair[1] >= height):
                     continue
-                value = map_array[i][j]
-                if (value >= 1000):
-                    #print("cats")
-                    continue
-                if (value == 1) or (value == 7):
-                    continue
-
-                point_type = value % 10
-                if point_type == 0:
-                    # point is grass
-                    order.insert(0, point)
-                else:
-                    order.append(point)
-            return order
-
-            """flood(x+1,y,pastnode)
-            flood(x,y+1,pastnode)
-            flood(x,y-1,pastnode)
-            flood(x-1,y,pastnode)"""
+                if map_array[pair[0]][pair[1]] in {0,6,7}:
+                    grassFlood(pair[0],pair[1],node)
 
 
-        #   during translation find the start and end points and flag them
-
+        #Grass run
         for i in range(width):
             for j in range(height):
-                if map_array[i][j] == 7:
-                    self.start = Grass(i,j,"start")
-                    stuff = order_destination(i,j)
-                    for element in stuff:
-                        flood(element[0], element[1], self.start)
-                    return
+                if map_array[i][j] in {0,6,7}:
+                    new_grass = Grass(i,j)
+                    self.nodes.add((i,j))
+                    self.grasses.append(new_grass)
+                    grassFlood(i,j,new_grass)
 
+        # Map run
+        #0grass -- 1wall -- 3switch -- 4door -- 5Pp -- 6end -- 7 Player start
+        for i in range(width):
+            for j in range(height):
+                val = map_array[i][j]
+                type = (val % 10)
+                if type == 3:
+                    new = Switch(i,j,self.convert[(val - type)//10])
+                    self.nodes.add((i,j))
+                    self.translate[(i,j)] = new
+                if type == 4:
+                    new = Door(i,j,self.convert[(val - type)//10],val > 100)
+                    self.nodes.add((i,j))
+                    self.translate[(i,j)] = new
+                if type == 5:
+                    new = Button(i,j,self.convert[(val - type)//10])
+                    self.nodes.add((i,j))
+                    self.translate[(i,j)] = new
+
+        #Connections run
+        for i in range(width):
+            for j in range(height):
+                val = map_array[i][j]
+                type = (val % 10)
+                if (type in {0,1}):
+                    continue
+                surround = [(x+1,y),(x,y+1),(x-1,y),(x,y-1)]
+                for pair in surround:
+                    if (pair[0] < 0) || (pair[1] < 0) || (pair[0] >= width) || (pair[1] >= height):
+                        continue
+                    if map_array[pair[0]][pair[1]] % 10 in {0,6,7}:
+                        for item in self.grasses:
+                            if (pair[0],pair[1]) in item.contained_coords:
+                                self.connect.append(((i,j),item.coord))
+                                self.connect.append((item.coord,(i,j)))
+                                break
+                    elif map_array[pair[0]][pair[1]] % 10 in {3,4,5}:
+                        self.connect.append(((i,j),(pair[0],pair[1])))
+
+
+        pass
 
 class Node:
     def __init__(self,X,Y,node_type):
@@ -165,6 +92,7 @@ class Node:
 class Grass(Node):
     def __init__(self,X,Y,grass_type = "grass"):
         super().__init__(X,Y,grass_type)
+        self.contained_coords = set()
 
 class Door(Node):
     def __init__(self,X,Y,color,inverse):
