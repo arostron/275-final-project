@@ -75,4 +75,7 @@ def renderGraph(g):
 
 if __name__ == '__main__':
 	tree1, tree2 = setup()
-	renderGraph(produceVisableGraph(tree2))
+	tree1.nodes.append((7,0)) # manually adding in the start node
+	graph_for_viz = graph.Graph(set(tree1.nodes), tree1.connect)
+	# render the graph.....
+	renderGraph(graph_for_viz)
