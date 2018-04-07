@@ -23,7 +23,7 @@ class MetaBush:
     def mapToMetaBush(self, map_array, width, height):
 
         def grassFlood(x,y,node):
-            new_grass.contained_coords.append((i,j))
+            new_grass.contained_coords.append((x,y))
             map_array[x][y] += 1000
             surround = [(x+1,y),(x,y+1),(x-1,y),(x,y-1)]
             for pair in surround:
