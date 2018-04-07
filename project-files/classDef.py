@@ -38,8 +38,14 @@ class MetaBush:
         Perform Flood-fill (one step to the east of node, target-color, replacement-color).
         '''
         def flood(x,y,pastnode):
+            _ = input("_________recursive call_________")
             value = map_array[x][y]
+
             point_type = value % 10
+            print("type:", point_type)
+            print("X,Y", x, y)
+            print()
+
             if value >= 1000:
                 #if here an if component.... (not grass)
                 if point_type != 0:
