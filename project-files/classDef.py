@@ -17,16 +17,17 @@ class MetaBush:
         self.buttons = {"RED":[],"ORANGE":[],'PINK':[],'WHITE':[],'YELLOW':[],'GREEN':[],'TEAL':[],'BLUE':[]}
         self.state = {"RED":False,"ORANGE":False,'PINK':False,'WHITE':False,'YELLOW':False,'GREEN':False,'TEAL':False,'BLUE':False}
 
+        #print(map_array)
         self.mapToMetaBush(map_array, width, height)
 
-    def mapToMetaBush(map_array, width, height):
+    def mapToMetaBush(self, map_array, width, height):
 
         def grassFlood(x,y,node):
             new_grass.contained_coords.add((i,j))
             map_array[x][y] += 1000
             surround = [(x+1,y),(x,y+1),(x-1,y),(x,y-1)]
             for pair in surround:
-                if (pair[0] < 0) || (pair[1] < 0) || (pair[0] >= width) || (pair[1] >= height):
+                if (pair[0] < 0) or (pair[1] < 0) or (pair[0] >= width) or (pair[1] >= height):
                     continue
                 if map_array[pair[0]][pair[1]] in {0,6,7}:
                     grassFlood(pair[0],pair[1],node)
@@ -52,7 +53,7 @@ class MetaBush:
                     self.nodes.add((i,j))
                     self.translate[(i,j)] = new
                 if type == 4:
-                    new = Door(i,j,self.convert[(val - type)//10],val > 100)
+                    new = Door(i,j,self.convert[((val - type)//10) % 10],val > 100)
                     self.nodes.add((i,j))
                     self.translate[(i,j)] = new
                 if type == 5:
@@ -67,9 +68,9 @@ class MetaBush:
                 type = (val % 10)
                 if (type in {0,1}):
                     continue
-                surround = [(x+1,y),(x,y+1),(x-1,y),(x,y-1)]
+                surround = [(i+1,j),(i,j+1),(i-1,j),(i,j-1)]
                 for pair in surround:
-                    if (pair[0] < 0) || (pair[1] < 0) || (pair[0] >= width) || (pair[1] >= height):
+                    if (pair[0] < 0) or (pair[1] < 0) or (pair[0] >= width) or (pair[1] >= height):
                         continue
                     if map_array[pair[0]][pair[1]] % 10 in {0,6,7}:
                         for item in self.grasses:
