@@ -1,6 +1,7 @@
 class MetaBush:
     def __init__(self,map_array, width, height):
         # A dictionary of nodes with the tuple names as keys
+        print("---------------")
         self.nodes = []
         # A dictionary connect
         self.connect = []
@@ -38,45 +39,55 @@ class MetaBush:
         '''
         def flood(x,y,pastnode):
             value = map_array[x][y]
-            if value >= 1000:
-                return
-            map_array[x][y] += 1000
             point_type = value % 10
+            if value >= 1000:
+                #if here an if component.... (not grass)
+                if point_type != 0:
+                    print("Connection?")
+                    self.connect.append((pastnode.coord,(x,y)))
+                return
+
+            map_array[x][y] += 1000
             color = self.convert[(((value - point_type)//10)%10)]
             inverse = value >= 100
+
+            self.nodes.append((x,y))
+            self.connect.append((pastnode.coord,(x,y)))
 
             #0grass -- 1wall -- 3switch -- 4door -- 5Pp -- 6end -- 7 Player start
             if point_type == 0 and not isinstance(pastnode, Grass):
                 # grass
+                #print("process grass")
                 new_node = Grass(x,y)
                 self.grasses.append((x,y))
                 pastnode.children.append(new_node)
                 pastnode = new_node
             elif point_type == 4:
                 # Door
+                #print("process door")
                 new_node = Door(x,y,color,inverse)
                 self.doors[color].append((x,y))
                 pastnode.children.append(new_node)
                 pastnode = new_node
             elif point_type == 3:
                 # swith
+                #print("process switch")
                 new_node = Switch(x,y,color)
                 self.switchs[color].append((x,y))
                 pastnode.children.append(new_node)
                 pastnode = new_node
             elif point_type == 5:
                 # Button
+                #print("process button")
                 new_node = Button(x,y,color)
                 self.buttons[color].append((x,y))
                 pastnode.children.append(new_node)
                 pastnode = new_node
             elif point_type == 6:
+                #print("process end")
                 new_node = Grass(x,y,"end")
                 pastnode.children.append(new_node)
                 pastnode = new_node
-
-            self.nodes.append((x,y))
-            self.connect.append((pastnode.coord,(x,y)))
 
             # list of 4 destinations //
             # if the destination is invalid remove it (filed or bounds or wall)
@@ -107,8 +118,10 @@ class MetaBush:
                     # Out of bounds, dont add to order
                     continue
                 value = map_array[i][j]
-
-                if (value >= 1000) or (value == 1) or (value == 7):
+                if (value >= 1000):
+                    #print("cats")
+                    continue
+                if (value == 1) or (value == 7):
                     continue
 
                 point_type = value % 10
