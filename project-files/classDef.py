@@ -66,7 +66,7 @@ class MetaBush:
             for j in range(height):
                 val = map_array[i][j]
                 type = (val % 10)
-                if (type in {0,1}):
+                if (type in {0,1,6,7}):
                     continue
                 surround = [(i+1,j),(i,j+1),(i-1,j),(i,j-1)]
                 for pair in surround:
