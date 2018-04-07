@@ -75,4 +75,4 @@ def renderGraph(g):
 
 if __name__ == '__main__':
 	tree1, tree2 = setup()
-	#renderGraph(produceVisableGraph(tree1))
+	renderGraph(produceVisableGraph(tree2))
