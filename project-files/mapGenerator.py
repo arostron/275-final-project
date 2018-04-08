@@ -60,6 +60,7 @@ def createMapFile(w=16,h=12):
         selected_tiles.append(valid_tiles[randint(0,len(valid_tiles)-1)])
 
     #generate start and end points
+    # start points and end points arent in both graphs...
     start_spot = randint(0,len(valid_tiles)-1)
     end_spot = randint(0,len(valid_tiles)-1)
     while start_spot == end_spot:
