@@ -78,8 +78,12 @@ def runSolver(filename = "Map.h"):
 	print(solver.checkMazes(tree1,tree2))
 
 
+
 if __name__ == '__main__':
-	runSolver(input("Name of map file"))
+	#runSolver(input("Name of map file"))
+	g1, g2 = setup("Test.h")
+	print(solver.checkMazes(g1, g2))
+	solver.slowCheckMazes(g1, g2)
 	"""
 	graph_for_viz = graph.Graph(set(tree1.nodes), tree1.connect)
 	# render the graph.....
