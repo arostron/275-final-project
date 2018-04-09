@@ -8,6 +8,7 @@ class MetaBush:
         self.connect = []
         #
         self.start = None
+        self.end = None
 
         self.convert = {0:"RED",1:"ORANGE",2:'PINK',3:'WHITE',4:'YELLOW',5:'GREEN',6:'TEAL',7:'BLUE'}
 
@@ -26,6 +27,8 @@ class MetaBush:
             node.contained_coords.append((x,y))
             if map_array[x][y] == 7:
                 self.start = node.coord
+            if map_array[x][y] == 6:
+                self.end = node.coord
             map_array[x][y] += 1000
             surround = [(x+1,y),(x,y+1),(x-1,y),(x,y-1)]
             for pair in surround:
@@ -42,6 +45,7 @@ class MetaBush:
                     new_grass = Grass(i,j)
                     self.nodes.add((i,j))
                     self.grasses.append(new_grass)
+                    self.translate[(i,j)] = new_grass
                     grassFlood(i,j,new_grass)
 
         # Map run
@@ -79,16 +83,19 @@ class MetaBush:
                             if (pair[0],pair[1]) in item.contained_coords:
                                 self.connect.append(((i,j),item.coord))
                                 self.connect.append((item.coord,(i,j)))
+                                self.translate[item.coord].connect.append((i,j))
+                                self.translate[(i,j)].connect.append(item.coord)
                                 break
                     elif map_array[pair[0]][pair[1]] % 10 in {3,4,5}:
                         self.connect.append(((i,j),(pair[0],pair[1])))
+                        self.translate[(i,j)].connect.append((pair[0],pair[1]))
 
 
         pass
 
 class Node:
     def __init__(self,X,Y,node_type):
-        self.children = list() # Sub nodes
+        self.connect = list() # Sub nodes
         self.coord = (X,Y)
         self.node_type = node_type
 
