@@ -3,6 +3,8 @@ from mainFrame import *
 from queue import deque as Q
 import bit
 from random import randint
+from graph import Graph
+import breadth_first_search
 
 
 def checkMazes(g1, g2):
@@ -77,10 +79,9 @@ def checkMazes(g1, g2):
 
             if isinstance(Anode,Button): # if start is a button
                 if isinstance(des_node,Door): # and the destination is a door
-                    if Anode.color == des_node.color: # why not combine these?******** 
+                    if Anode.color == des_node.color:
                         continue
                 State = bit.toggleBit(State,color_code[Anode.color]) # toggle getting off button
-
 
 
             # need to calculate State as a result of getting onto something
@@ -110,3 +111,92 @@ def checkMazes(g1, g2):
         #add edges between valid destinations # MIGHT NOT NEED THIS???
 
     return False
+
+def slowCheckMazes(g1, g2):
+    """
+    PSEUDO FOR SUPER CLOUD
+    consider node a (from g1) and node b (from g2)
+
+        add starting nodes (include every possible starting State variables)
+
+        move off of a to every possible
+            find all possible destinations
+            calculate the resulting State variables
+            add the destination node
+            add the edge between the existing nodes
+
+        move off of a to every possible
+            find all possible destinations
+            calculate the resulting State variables
+            add the destination node
+            add the edge between the existing nodes
+    """
+    nodes = set()
+    edges = []
+
+    color_code = {"RED":0,"ORANGE":1,'PINK':2,'WHITE':3,'YELLOW':4,'GREEN':5,'TEAL':6,'BLUE':7}
+
+
+    for a in g1.nodes:
+        for b in g2.nodes:
+            # add each start point
+            for State in range(2**8):
+                # for each State variables possible
+                nodes.add((a,b,State))
+                #print((a,b,State))
+
+
+                #move off A
+                connect1, connect2 = g1.translate[a].connect, g2.translate[b].connect
+                for des in connect1:
+                    #get the node of the destination
+                    des_node = g1.translate[des]
+                    # if the destination door is closed skip the destination
+                    if des_node.node_type == "door":
+                        if (not bit.testBit(State,color_code[des_node.color]) and not des_node.inverse)\
+                        or (bit.testBit(State,color_code[des_node.color]) and des_node.inverse):
+                            #regular door is closed 0, or inverse door and 1
+                            continue
+
+                    if isinstance(a,Button): # if start is a button
+                        if isinstance(des_node,Door): # and the destination is a door
+                            if a.color == des_node.color:
+                                continue
+                        State = bit.toggleBit(State,color_code[a.color]) # toggle getting off button
+
+
+                    # need to calculate State as a result of getting onto something
+                    if isinstance(des_node,Button) or isinstance(des_node,Switch):
+                        State = bit.toggleBit(State,color_code[des_node.color])
+
+                    # add the node pair edge
+                    nodes.add((des, b, State))
+                    edges.append(((a,b,State),(des, b, State)))
+
+                #move off B
+                for des in connect2:
+                    des_node = g2.translate[des]
+                    if isinstance(b,Button):
+                        if isinstance(des_node,Door):
+                            if b.color == des_node.color:
+                                continue
+                        State = bit.toggleBit(State,color_code[b.color])
+                    if isinstance(des_node,Door):
+                        if (not bit.testBit(State,color_code[des_node.color]) and not des_node.inverse)\
+                        or (bit.testBit(State,color_code[des_node.color]) and des_node.inverse):
+                            #regular door is closed, or inverse door and 1
+                            continue
+
+                    # need to calculate State beforehand
+                    if isinstance(des_node,Button) or isinstance(des_node,Switch):
+                        State = bit.toggleBit(State,color_code[des_node.color])
+                    nodes.add((a, des, State))
+                    edges.append( ((a,b,State),(a, des, State)) )
+
+    print(len(nodes))
+    cloud = Graph(nodes, edges)
+    print("here we go...")
+    breadth_first_search.breadth_first_search(cloud, (g1.start,g2.start,0), g1.end, g2.end)
+
+def a_really_bad_idea():
+    pass
