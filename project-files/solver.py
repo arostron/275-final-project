@@ -97,7 +97,7 @@ def checkMazes(g1, g2):
             if isinstance(des_node,Button) or isinstance(des_node,Switch):
                 State = bit.toggleBit(State,color_code[des_node.color])
             q.append((A, des, State))
-            print("{}".format("qwertyuiopasdfghjklzxcvbnm1234567890"[randint(0,len("qwertyuiopasdfghjklzxcvbnm1234567890")-1)]))
+            #print("{}".format("qwertyuiopasdfghjklzxcvbnm1234567890"[randint(0,len("qwertyuiopasdfghjklzxcvbnm1234567890")-1)]))
         #add edges between valid destinations # MIGHT NOT NEED THIS???
 
     return False
