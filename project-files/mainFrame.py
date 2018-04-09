@@ -73,10 +73,13 @@ def renderGraph(g):
 
 	visualize.get_dot_format(g).render(view=True)
 
+def runSolver(filename = "Map.h"):
+	tree1, tree2 = setup(filename)
+	print(solver.checkMazes(tree1,tree2))
+
 
 if __name__ == '__main__':
-	tree1, tree2 = setup()
-	print(solver.checkMazes(tree1,tree2))
+	runSolver(input("Name of map file"))
 	"""
 	graph_for_viz = graph.Graph(set(tree1.nodes), tree1.connect)
 	# render the graph.....
