@@ -58,23 +58,32 @@ def checkMazes(g1, g2):
 
         nodes.add(curr)
 
-        #find all the valid nodes #HOW WE DO THIS EH
+        #find all the valid nodes
+        # find the class representations of the current nodes
         Anode, Bnode = g1.translate[A], g2.translate[B]
+        # get the connections list from each node
         connect1, connect2 = Anode.connect, Bnode.connect
+        #for each connection tuple in connection list
         for des in connect1:
+            #get the node of the destination
             des_node = g1.translate[des]
-            if isinstance(Anode,Button):
-                if isinstance(des_node,Door):
-                    if Anode.color == des_node.color:
-                        continue
-                State = bit.toggleBit(State,color_code[Anode.color])
+
+            # if the destination door is closed skip the destination
             if isinstance(des_node,Door):
                 if (not bit.testBit(State,color_code[des_node.color]) and not des_node.inverse)\
                 or (bit.testBit(State,color_code[des_node.color]) and des_node.inverse):
-                    #regular door is closed, or inverse door and 1
+                    #regular door is closed 0, or inverse door and 1
                     continue
 
-            # need to calculate State beforehand
+            if isinstance(Anode,Button): # if start is a button
+                if isinstance(des_node,Door): # and the destination is a door
+                    if Anode.color == des_node.color: # why not combine these?******** 
+                        continue
+                State = bit.toggleBit(State,color_code[Anode.color]) # toggle getting off button
+
+
+
+            # need to calculate State as a result of getting onto something
             if isinstance(des_node,Button) or isinstance(des_node,Switch):
                 State = bit.toggleBit(State,color_code[des_node.color])
             q.append((des, B, State))
