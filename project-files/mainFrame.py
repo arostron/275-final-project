@@ -76,6 +76,9 @@ def renderGraph(g):
 
 if __name__ == '__main__':
 	tree1, tree2 = setup()
+	print(solver.checkMazes(tree1,tree2))
+	"""
 	graph_for_viz = graph.Graph(set(tree1.nodes), tree1.connect)
 	# render the graph.....
 	renderGraph(graph_for_viz)
+	"""
