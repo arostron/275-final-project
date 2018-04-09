@@ -57,14 +57,17 @@ class MetaBush:
                 if type == 3:
                     new = Switch(i,j,self.convert[(val - type)//10])
                     self.nodes.add((i,j))
+                    self.switchs[self.convert[(val - type)//10]].append((i,j))
                     self.translate[(i,j)] = new
                 if type == 4:
                     new = Door(i,j,self.convert[((val - type)//10) % 10],val > 100)
                     self.nodes.add((i,j))
+                    self.doors[self.convert[((val - type)//10) % 10]].append((i,j))
                     self.translate[(i,j)] = new
                 if type == 5:
                     new = Button(i,j,self.convert[(val - type)//10])
                     self.nodes.add((i,j))
+                    self.buttons[self.convert[(val - type)//10]].append((i,j))
                     self.translate[(i,j)] = new
 
         #Connections run
@@ -91,8 +94,6 @@ class MetaBush:
                         self.translate[(i,j)].connect.append((pair[0],pair[1]))
 
 
-        pass
-
 class Node:
     def __init__(self,X,Y,node_type):
         self.connect = list() # Sub nodes
@@ -103,6 +104,7 @@ class Grass(Node):
     def __init__(self,X,Y,grass_type = "grass"):
         super().__init__(X,Y,grass_type)
         self.contained_coords = []
+        self.color = None
 
 class Door(Node):
     def __init__(self,X,Y,color,inverse):
