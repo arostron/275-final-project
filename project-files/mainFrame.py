@@ -2,6 +2,7 @@ import classDef
 import reader
 import graph
 import visualize
+import solver
 
 
 def setup(filename="Map.h"):
