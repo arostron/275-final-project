@@ -2,7 +2,7 @@ from graph import Graph
 from collections import deque
 import random, time
 
-def breadth_first_search(graph, s):
+def breadth_first_search(graph, s, p1end, p2end):
   """
   Given a graph (an instance of Digraph) and a vertex s
   in the graph, will return construct a search tree from s
@@ -42,9 +42,12 @@ def breadth_first_search(graph, s):
     for nbr in graph.neighbours(curr):
       if nbr not in reached:
         reached[nbr] = curr
+        if nbr[0] == p1end and nbr[1] == p2end:
+            print("true")
+            return True
         todo.append(nbr)
 
-  return reached
+  return False
 
 
 def get_path(reached, start, end):
