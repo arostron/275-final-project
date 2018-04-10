@@ -60,20 +60,32 @@ def checkMazes(g1, g2):
                 if isinstance(des_node,Door): # and the destination is a door
                     if Anode.color == des_node.color:
                         continue
+                if isinstance(B,Door):
+                    if g2.translate[B].color == des_node.color:
+                        #player killed
+                        continue
                 State = bit.toggleBit(State,color_code[Anode.color]) # toggle getting off button
 
 
             # need to calculate State as a result of getting onto something
             if isinstance(des_node,Button) or isinstance(des_node,Switch):
                 State = bit.toggleBit(State,color_code[des_node.color])
+                if isinstance(B,Door):
+                    if g2.translate[B].color == des_node.color:
+                        #player killed
+                        continue
             q.append((des, B, State))
 
-
+        # moving off of B
         for des in connect2:
             des_node = g2.translate[des]
             if isinstance(Bnode,Button):
                 if isinstance(des_node,Door):
                     if Bnode.color == des_node.color:
+                        continue
+                if isinstance(A,Door):
+                    if g1.translate[A].color == des_node.color:
+                        #player killed
                         continue
                 State = bit.toggleBit(State,color_code[Bnode.color])
             if isinstance(des_node,Door):
@@ -85,6 +97,12 @@ def checkMazes(g1, g2):
             # need to calculate State beforehand
             if isinstance(des_node,Button) or isinstance(des_node,Switch):
                 State = bit.toggleBit(State,color_code[des_node.color])
+                # is the player dead?
+                # if the other player is standing on a closed door then skip
+                if isinstance(A,Door):
+                    if g1.translate[A].color == des_node.color:
+                        #player killed
+                        continue
             q.append((A, des, State))
 
     #endpoint hasnt been found and all possibilities have been processed
@@ -162,6 +180,10 @@ def slowCheckMazes(g1, g2):
                     # need to calculate State as a result of getting onto something
                     if isinstance(des_node,Button) or isinstance(des_node,Switch):
                         State = bit.toggleBit(State,color_code[des_node.color])
+                        if isinstance(b,Door):
+                            if g2.translate[b].color == des_node.color:
+                                #player killed
+                                continue
 
                     # add the destination node, the edge, and a neighbour to the graph
                     cloud.add_vertex((des, b, State))
@@ -185,6 +207,10 @@ def slowCheckMazes(g1, g2):
                     # need to calculate State beforehand
                     if isinstance(des_node,Button) or isinstance(des_node,Switch):
                         State = bit.toggleBit(State,color_code[des_node.color])
+                        if isinstance(a,Door):
+                            if g1.translate[a].color == des_node.color:
+                                #player killed
+                                continue
                     cloud.add_vertex((a, des, State))
                     cloud.add_edge( ((a,b,OG_State),(a, des, State)) )
                     cloud.neighbour[(a,b,OG_State)].append( (a, des, State) )
