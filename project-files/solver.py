@@ -60,20 +60,27 @@ def checkMazes(g1, g2):
                 if isinstance(des_node,Door): # and the destination is a door
                     if Anode.color == des_node.color:
                         continue
+                '''
                 if isinstance(B,Door):
                     if g2.translate[B].color == des_node.color:
                         #player killed
                         continue
+                '''
                 State = bit.toggleBit(State,color_code[Anode.color]) # toggle getting off button
 
 
             # need to calculate State as a result of getting onto something
             if isinstance(des_node,Button) or isinstance(des_node,Switch):
                 State = bit.toggleBit(State,color_code[des_node.color])
+                '''
                 if isinstance(B,Door):
                     if g2.translate[B].color == des_node.color:
                         #player killed
                         continue
+                '''
+            if (isinstance(B,Door) and ((not bit.testBit(State,color_code[g2.translate[B].color]) and not g2.translate[B].inverse) or (bit.testBit(State,color_code[g2.translate[B].color]) and g2.translate[B].inverse))):
+                #player 2 just died
+                continue
             q.append((des, B, State))
 
         # moving off of B
@@ -83,10 +90,12 @@ def checkMazes(g1, g2):
                 if isinstance(des_node,Door):
                     if Bnode.color == des_node.color:
                         continue
+                '''
                 if isinstance(A,Door):
                     if g1.translate[A].color == des_node.color:
                         #player killed
                         continue
+                '''
                 State = bit.toggleBit(State,color_code[Bnode.color])
             if isinstance(des_node,Door):
                 if (not bit.testBit(State,color_code[des_node.color]) and not des_node.inverse)\
@@ -99,11 +108,17 @@ def checkMazes(g1, g2):
                 State = bit.toggleBit(State,color_code[des_node.color])
                 # is the player dead?
                 # if the other player is standing on a closed door then skip
+                '''
                 if isinstance(A,Door):
                     if g1.translate[A].color == des_node.color:
                         #player killed
                         continue
+                '''
+            if (isinstance(A,Door) and ((not bit.testBit(State,color_code[g1.translate[A].color]) and not g1.translate[A].inverse) or (bit.testBit(State,color_code[g1.translate[A].color]) and g1.translate[A].inverse))):
+                #player 1 just died
+                continue
             q.append((A, des, State))
+
 
     #endpoint hasnt been found and all possibilities have been processed
     return False
