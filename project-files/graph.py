@@ -35,6 +35,7 @@ class Graph:
 
         self.vertices = set()
         self.edges = list()
+        self.neighbour = dict()
 
         for v in Vertices:
             self.add_vertex(v)
@@ -128,6 +129,7 @@ class Graph:
 
     def neighbours(self, v):
         """
+        THIS FUCKING RUNTIME IS SHIT
         Return a list of neighbours of v.
         A vertex u appears in this list as many
         times as the (v,u) edge is in the graph.
@@ -135,7 +137,7 @@ class Graph:
         If v is not in the graph, then
         raise a ValueError exception.
 
-        Efficiency: O(# edges)
+        Efficiency: O(# edges) NOT GOOD ENOUGH GODDAMMIT
 
         >>> Edges = [(1,2),(1,4),(3,1),(3,4),(2,4),(1,2)]
         >>> g = Graph({1,2,3,4}, Edges)
@@ -149,10 +151,14 @@ class Graph:
         [4]
         """
 
+        """ OLD SHIT NEIGHBOURS
         if not self.is_vertex(v):
             raise ValueError("Vertex not in graph")
 
         return [e[1] for e in self.edges if e[0] == v]
+        """
+        #print("asking for node...", v)
+        return self.neighbour[v]
 
 
 def is_walk(g, walk):

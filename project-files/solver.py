@@ -131,6 +131,7 @@ def slowCheckMazes(g1, g2):
             add the destination node
             add the edge between the existing nodes
     """
+    cloud = Graph()
     nodes = set()
     edges = []
 
@@ -142,8 +143,10 @@ def slowCheckMazes(g1, g2):
             # add each start point
             for State in range(2**8):
                 # for each State variables possible
-                nodes.add((a,b,State))
+                cloud.add_vertex((a,b,State))
                 #print((a,b,State))
+                OG_State = State
+                cloud.neighbour[(a,b,State)] = []
 
 
                 #move off A
@@ -170,8 +173,9 @@ def slowCheckMazes(g1, g2):
                         State = bit.toggleBit(State,color_code[des_node.color])
 
                     # add the node pair edge
-                    nodes.add((des, b, State))
-                    edges.append(((a,b,State),(des, b, State)))
+                    cloud.add_vertex((des, b, State))
+                    cloud.add_edge(((a,b,OG_State),(des, b, State)))
+                    cloud.neighbour[(a,b,OG_State)].append((des, b, State))
 
                 #move off B
                 for des in connect2:
@@ -190,13 +194,11 @@ def slowCheckMazes(g1, g2):
                     # need to calculate State beforehand
                     if isinstance(des_node,Button) or isinstance(des_node,Switch):
                         State = bit.toggleBit(State,color_code[des_node.color])
-                    nodes.add((a, des, State))
-                    edges.append( ((a,b,State),(a, des, State)) )
+                    cloud.add_vertex((a, des, State))
+                    cloud.add_edge( ((a,b,OG_State),(a, des, State)) )
+                    cloud.neighbour[(a,b,OG_State)].append( (a, des, State) )
 
-    print(len(nodes))
-    cloud = Graph(nodes, edges)
+    #print("the number of nodes is:",len(cloud.vertices), "expected:", (len(g1.nodes) * len(g2.nodes) * 256))
+    print(len(cloud.edges))
     print("here we go...")
     breadth_first_search.breadth_first_search(cloud, (g1.start,g2.start,0), g1.end, g2.end)
-
-def a_really_bad_idea():
-    pass

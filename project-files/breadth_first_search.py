@@ -38,7 +38,7 @@ def breadth_first_search(graph, s, p1end, p2end):
 
   while todo: # condition is true if and only if todo is not empty
     curr = todo.popleft()
-
+    
     for nbr in graph.neighbours(curr):
       if nbr not in reached:
         reached[nbr] = curr
@@ -47,7 +47,9 @@ def breadth_first_search(graph, s, p1end, p2end):
             return True
         todo.append(nbr)
 
+  print("false")
   return False
+
 
 
 def get_path(reached, start, end):
