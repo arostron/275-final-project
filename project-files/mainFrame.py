@@ -97,7 +97,7 @@ def main():
 		# MetaBush's established
 		y_n = input("visualize g1? (y/n): ")
 		if y_n == 'y':
-			graph_for_viz = graph.Graph(set(tree1.nodes), tree1.connect)
+			graph_for_viz = graph.Graph(set(g1.nodes), g1.connect)
 			# render the graph.....
 			renderGraph(graph_for_viz)
 
