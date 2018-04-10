@@ -77,36 +77,3 @@ def get_path(reached, start, end):
   path.reverse()
 
   return path
-
-
-def test_random_graph(num_vertices):
-  """
-  Constructs a random graph with the given number of vertices where
-  each vertex has 10 random outgoing edges.
-
-  Then it runs the search and reports the time taken by the search.
-  """
-  print("Constructing random graph with", num_vertices, "vertices")
-  print("and", 10*num_vertices, "edges.")
-
-  vertices = set(range(num_vertices))
-
-  edges = []
-  for v in vertices:
-    # for each vertex, create 10 random outgoing edges, we are not concerned
-    # about duplicate edges or loops
-    edges += [(v, random.randrange(num_vertices)) for x in range(10)]
-
-    random_graph = Graph(vertices, edges)
-
-  print("Starting search...")
-  start = time.time()
-  reached = breadth_first_search(random_graph, 0)
-  end = time.time()
-  print("Done!\nElapsed time in seconds:", end-start)
-  print("Number of vertices reached:", len(reached))
-
-
-if __name__ == "__main__":
-  import doctest
-  doctest.testmod()
