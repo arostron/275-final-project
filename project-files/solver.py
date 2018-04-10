@@ -127,7 +127,7 @@ def slowCheckMazes(g1, g2):
 
     color_code = {"RED":0,"ORANGE":1,'PINK':2,'WHITE':3,'YELLOW':4,'GREEN':5,'TEAL':6,'BLUE':7}
 
-    print("starting slow solver\n this will take 30s")
+    print("starting slow solver graph generation\nThis could take a while...")
     for a in g1.nodes:
         for b in g2.nodes:
             # for all a and b, add each start point

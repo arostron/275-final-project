@@ -13,7 +13,7 @@ def setup(filename="Map.h"):
 	bushb = classDef.MetaBush(map2, w, h)
 	return busha, bushb
 
-def produceVisableGraph(tree):
+def oldproduceVisableGraph(tree):
 	"""
 	Extracts the nodes and edges from a given tree then returns the graph
 	"""
@@ -75,29 +75,53 @@ def renderGraph(g):
 
 	visualize.get_dot_format(g).render(view=True)
 
-def runSolver(filename = "Map.h"):
-	tree1, tree2 = setup(filename)
-	print(solver.checkMazes(tree1,tree2))
+def main():
+	while True:
+		print("--------------------")
 
+		# possibly generate a random map file
+		y_n = input("Create random map file? (y/n): ")
+		if y_n == 'y':
+			random_name = mapGenerator.createMapFileRandom()
+			print("File also accesable as'random' in next prompt")
+
+		#call setup on input filename
+		map_file = input("Name of map file: ")
+		if map_file == "":
+			g1, g2 = setup()
+		elif map_file == "random":
+			g1, g2 = setup(random_name)
+		else:
+			g1, g2 = setup(map_file)
+
+		# MetaBush's established
+		y_n = input("visualize g1? (y/n): ")
+		if y_n == 'y':
+			graph_for_viz = graph.Graph(set(tree1.nodes), tree1.connect)
+			# render the graph.....
+			renderGraph(graph_for_viz)
+
+		# run the fast solver
+		_ = input("About to run (quick) solver.py, press enter to continue")
+		print()
+		start = time.clock()
+		print("Maps solveable?:", solver.checkMazes(g1, g2))
+		print("Time Elapsed:", time.clock()-start)
+		print()
+
+		# prompt to run the slow solver
+		y_n = input("Check solveable with slow algorithm? (y/n): ")
+		if y_n == 'y':
+			print()
+			start = time.clock()
+			solver.slowCheckMazes(g1, g2)
+			print("Time Elapsed:", time.clock()-start)
+			print()
+
+		y_n = input("Again? (y/n): ")
+		if y_n != 'y':
+			return
 
 
 if __name__ == '__main__':
-	#runSolver(input("Name of map file"))
-
-	g1, g2 = setup()
-	print("trees generated...")
-	print("Old solver:",solver.checkMazes(g1, g2))
-	solver.slowCheckMazes(g1, g2)
-	"""
-
-	print('_______testing random maps_______')
-
-	g1, g2, = setup(mapGenerator.createMapFileRandom())
-	print("Old solver:",solver.checkMazes(g1, g2))
-	solver.slowCheckMazes(g1, g2)
-	"""
-	"""
-	graph_for_viz = graph.Graph(set(tree1.nodes), tree1.connect)
-	# render the graph.....
-	renderGraph(graph_for_viz)
-	"""
+	main()
