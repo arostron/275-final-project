@@ -8,7 +8,7 @@
 
 #include "Drawing.h"
 #include "Map.h"
-//#include "initHand.h"
+#include "initHand.h"
 
 Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC);
 
