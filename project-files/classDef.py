@@ -1,7 +1,7 @@
 class MetaBush:
     def __init__(self,map_array, width, height):
         # A dictionary of nodes with the tuple names as keys
-        print("---------------")
+        #print("---------------")
         self.nodes = set()
         self.translate = dict()
         # A dictionary connect

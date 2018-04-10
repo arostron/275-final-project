@@ -137,7 +137,7 @@ def slowCheckMazes(g1, g2):
 
     color_code = {"RED":0,"ORANGE":1,'PINK':2,'WHITE':3,'YELLOW':4,'GREEN':5,'TEAL':6,'BLUE':7}
 
-
+    print("starting slow solver\n this will take 30s")
     for a in g1.nodes:
         for b in g2.nodes:
             # add each start point
@@ -199,6 +199,5 @@ def slowCheckMazes(g1, g2):
                     cloud.neighbour[(a,b,OG_State)].append( (a, des, State) )
 
     #print("the number of nodes is:",len(cloud.vertices), "expected:", (len(g1.nodes) * len(g2.nodes) * 256))
-    print(len(cloud.edges))
     print("here we go...")
     breadth_first_search.breadth_first_search(cloud, (g1.start,g2.start,0), g1.end, g2.end)

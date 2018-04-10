@@ -4,6 +4,7 @@ import graph
 import visualize
 import solver
 import time
+import mapGenerator
 
 
 def setup(filename="Map.h"):
@@ -82,10 +83,19 @@ def runSolver(filename = "Map.h"):
 
 if __name__ == '__main__':
 	#runSolver(input("Name of map file"))
-	g1, g2 = setup()
+
+	g1, g2 = setup("Test.h")
 	print("trees generated...")
 	print("Old solver:",solver.checkMazes(g1, g2))
 	solver.slowCheckMazes(g1, g2)
+	"""
+
+	print('_______testing random maps_______')
+
+	g1, g2, = setup(mapGenerator.createMapFileRandom())
+	print("Old solver:",solver.checkMazes(g1, g2))
+	solver.slowCheckMazes(g1, g2)
+	"""
 	"""
 	graph_for_viz = graph.Graph(set(tree1.nodes), tree1.connect)
 	# render the graph.....
