@@ -1,14 +1,10 @@
 """
-Directed Graph Class
+Directed Graph Class from 275 (Modified)
 
 This graph class is a container that holds a set
 of vertices and a list of directed edges.
 Edges are modelled as tuples (u,v) of vertices.
-
-IF YOU ARE READING THIS, THEN YOU HAVE THE WRONG VERSION.
-WE MODIFIED THIS CLASS ON LECTURE 5. SEE THE graph.py
-THAT IS INCLUDED WITH THE ASSIGNMENT 1 FILES FOR THE CORRECT
-VERSION (I WILL POST SHORTLY AFTER LECTURE 5).
+A dictonary mapping vertices to their respective neighbour nodes is also present
 """
 
 class Graph:
@@ -129,7 +125,6 @@ class Graph:
 
     def neighbours(self, v):
         """
-        THIS FUCKING RUNTIME IS SHIT
         Return a list of neighbours of v.
         A vertex u appears in this list as many
         times as the (v,u) edge is in the graph.
@@ -137,7 +132,7 @@ class Graph:
         If v is not in the graph, then
         raise a ValueError exception.
 
-        Efficiency: O(# edges) NOT GOOD ENOUGH GODDAMMIT
+        Efficiency: O(# edges)
 
         >>> Edges = [(1,2),(1,4),(3,1),(3,4),(2,4),(1,2)]
         >>> g = Graph({1,2,3,4}, Edges)
@@ -151,7 +146,7 @@ class Graph:
         [4]
         """
 
-        """ OLD SHIT NEIGHBOURS
+        """ OLD NEIGHBOURS
         if not self.is_vertex(v):
             raise ValueError("Vertex not in graph")
 

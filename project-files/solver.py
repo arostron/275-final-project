@@ -17,34 +17,13 @@ def checkMazes(g1, g2):
     game State
     Node example: (x1,y1,x2,y2,[State variables])
     """
-    # TODO...
 
-    """
-    PSEUDO FOR SUPER CLOUD
-    consider node a (from g1) and node b (from g2)
-
-        add starting nodes (include every possible starting State variables)
-
-        move off of a to every possible
-            find all possible destinations
-            calculate the resulting State variables
-            add the destination node
-            add the edge between the existing nodes
-
-        move off of a to every possible
-            find all possible destinations
-            calculate the resulting State variables
-            add the destination node
-            add the edge between the existing nodes
-    """
     color_code = {"RED":0,"ORANGE":1,'PINK':2,'WHITE':3,'YELLOW':4,'GREEN':5,'TEAL':6,'BLUE':7}
     q = Q()
     empty_q = Q()
     nodes = set()
     # add the start node to the q along with staring conditions
     q.append((g1.start, g2.start, 0))
-
-
 
     while q != empty_q:
         #pop the queue
@@ -107,13 +86,24 @@ def checkMazes(g1, g2):
             if isinstance(des_node,Button) or isinstance(des_node,Switch):
                 State = bit.toggleBit(State,color_code[des_node.color])
             q.append((A, des, State))
-            #print("{}".format("qwertyuiopasdfghjklzxcvbnm1234567890"[randint(0,len("qwertyuiopasdfghjklzxcvbnm1234567890")-1)]))
-        #add edges between valid destinations # MIGHT NOT NEED THIS???
 
+    #endpoint hasnt been found and all possibilities have been processed
     return False
 
 def slowCheckMazes(g1, g2):
     """
+    Slow check mazes takes in two 'MetaBush' representations of two maze rooms
+    and returns if it is possible for both players to escape the mazeself.
+
+    To compute this slowCheckMazes creates a graph of every possible game State
+    O(#nodes in g1 * #nodes in g1 * 2^state variables)
+    The graph is also populated by valid transitions between nodes. Once the
+    'cloud' graph has been computed with all possible moves, a Modified
+    breadth_first_search is called to see if there exists a path of valid
+    movements between start and end nodes.
+
+    Solver does not work on trivial mazes
+
     PSEUDO FOR SUPER CLOUD
     consider node a (from g1) and node b (from g2)
 
@@ -140,17 +130,18 @@ def slowCheckMazes(g1, g2):
     print("starting slow solver\n this will take 30s")
     for a in g1.nodes:
         for b in g2.nodes:
-            # add each start point
+            # for all a and b, add each start point
             for State in range(2**8):
                 # for each State variables possible
                 cloud.add_vertex((a,b,State))
-                #print((a,b,State))
                 OG_State = State
+                #establish neighbours list in graph
                 cloud.neighbour[(a,b,State)] = []
 
-
-                #move off A
+                #get a list of neighbouring nodes to pair nodes a and b
                 connect1, connect2 = g1.translate[a].connect, g2.translate[b].connect
+
+                #calculate all moves off of A
                 for des in connect1:
                     #get the node of the destination
                     des_node = g1.translate[des]
@@ -161,23 +152,23 @@ def slowCheckMazes(g1, g2):
                             #regular door is closed 0, or inverse door and 1
                             continue
 
-                    if isinstance(a,Button): # if start is a button
+                    # if start is a button
+                    if isinstance(a,Button):
                         if isinstance(des_node,Door): # and the destination is a door
                             if a.color == des_node.color:
                                 continue
                         State = bit.toggleBit(State,color_code[a.color]) # toggle getting off button
 
-
                     # need to calculate State as a result of getting onto something
                     if isinstance(des_node,Button) or isinstance(des_node,Switch):
                         State = bit.toggleBit(State,color_code[des_node.color])
 
-                    # add the node pair edge
+                    # add the destination node, the edge, and a neighbour to the graph
                     cloud.add_vertex((des, b, State))
                     cloud.add_edge(((a,b,OG_State),(des, b, State)))
                     cloud.neighbour[(a,b,OG_State)].append((des, b, State))
 
-                #move off B
+                #move off B (Same process as a but moving off of B)
                 for des in connect2:
                     des_node = g2.translate[des]
                     if isinstance(b,Button):
@@ -198,6 +189,7 @@ def slowCheckMazes(g1, g2):
                     cloud.add_edge( ((a,b,OG_State),(a, des, State)) )
                     cloud.neighbour[(a,b,OG_State)].append( (a, des, State) )
 
+    # cloud now created, run breadth_first_search
     #print("the number of nodes is:",len(cloud.vertices), "expected:", (len(g1.nodes) * len(g2.nodes) * 256))
-    print("here we go...")
+    print("Cloud calculated. Running breadth_first_search")
     breadth_first_search.breadth_first_search(cloud, (g1.start,g2.start,0), g1.end, g2.end)

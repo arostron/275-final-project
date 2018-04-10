@@ -4,33 +4,14 @@ import random, time
 
 def breadth_first_search(graph, s, p1end, p2end):
   """
+  Taken from 275 google drive and slightly modified
   Given a graph (an instance of Digraph) and a vertex s
-  in the graph, will return construct a search tree from s
-  using a breadth-first search.
+  in the graph, and endpoints of the desired route, breadth_first_search Returns
+  a boolean value representing if the path is present in the graph
 
-  That is, a dictionary "reached" will be returned whose keys are all vertices
+  A dictionary "reached" whose keys are all vertices
   reachable from s and where reached[v] is the predecessor of v in the search.
   The exception is reached[s] == s.
-
-  Use can use get_path(reached, s, t) to recover a path from s to t
-  in the graph, after running this search.
-
-  >>> g1 = Graph({"A","B","C","D"}, [("A","B"), ("B","D"), ("C","B"), ("C","D")])
-  >>> breadth_first_search(g1, "A").keys() == {"A", "B", "D"}
-  True
-  >>> breadth_first_search(g1, "C").keys() == {"C", "B", "D"}
-  True
-  >>> breadth_first_search(g1, "B").keys() == {"B", "D"}
-  True
-  >>> breadth_first_search(g1, "D").keys() == {"D"}
-  True
-  >>> g2 = Graph({"A","B","C"}, [("A","B"), ("B","C"), ("C","B")])
-  >>> breadth_first_search(g2, "A").keys() == {"A", "B", "C"}
-  True
-  >>> breadth_first_search(g2, "B").keys() == {"B", "C"}
-  True
-  >>> breadth_first_search(g2, "C").keys() == {"B", "C"}
-  True
   """
 
   reached = {s:s}
@@ -42,13 +23,15 @@ def breadth_first_search(graph, s, p1end, p2end):
     for nbr in graph.neighbours(curr):
       if nbr not in reached:
         reached[nbr] = curr
+
+        # if one of the neighbours contains both players on the end tiles
         if nbr[0] == p1end and nbr[1] == p2end:
-            print("true")
+            print("True")
             return True
         todo.append(nbr)
 
-  print("false")
-  return False 
+  print("False")
+  return False
 
 
 
