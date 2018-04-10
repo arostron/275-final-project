@@ -1,0 +1,112 @@
+Student: Alex Rostron
+ID: 1495594
+CCID: rostron
+Student: Joshua Derkson
+ID: 1497709
+CCID: jgderkso
+
+Project: DUAL MAZE
+
+Description:
+Dual maze is a co-op game where you and a friend are trapped in two rooms! Both
+players need to escape before time runs out! but beware, each room is full of
+doors, switches, and pressure plates. There are many different colours of
+pressure plates and switches, each colour of switch is linked controlling
+doors in both players rooms. Players must work together to untangle the
+collection of doors without smushing the other player in the process! There is
+also a time limit on the maze to add pressure to game play.
+
+A handshake is in place to ensure that both arduinos are in sync when both players
+are ready. Since this project involves two arduinos with separate screens a
+careful handshake and data transfer were the main challenge of this project after
+the game mechanics of player movement, doors, switches, pressure plates, and
+player death had been flushed out. And of course after all the beautifully
+hand crafted graphics (Shout out to Josh).
+
+
+Acknowledgements and Assumptions:
+We took inspiration from keep talking and nobody explodes and the Fireboy and
+Water girl series. Both of which are collaborative co-op games which we very
+much enjoy!
+
+
+below is a map which will allow for much easier game testing, just copy this
+over top of the old array 
+
+uint8_t map1[2][16][12] = {{
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,4,0,0,0,0},
+{0,0,0,0,5,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,6,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0}},{
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,3,0,104,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,6,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0}}};
+
+Accessories:
+* Arduino Mega Board (AMG) x2
+* Adafruit ILI9341 x2
+* joystickn x2
+
+Wiring instructions:
+
+|communication instructions|
+*(same as in class encryption)
+* 5v <--> Arduino#1 pin 13
+* GND <--> Arduino#2 pin 13
+* Arduino#2 TX3 <--> Arduino#1 RX3
+* Arduino#2 TX3 <--> Arduino#1 RX3
+
+|Joystick instructions|(both Arduinos)
+
+* Joystick VRx <--> Arduino A1
+* Joystick VRy <--> Arduino A0
+* Joystick SW  <--> Arduino 2
+* Joystick +5v <--> Arduino 5v
+* Joystick GND <--> Arduino GND
+
+|Adafruit instructions| (both Arduinos)
+
+Board Pin <---> Arduino Pin
+===========================
+GND             GND
+Vin             5V
+3Vo             NOT CONNECTED
+CLK             52
+MISO            50
+MOSI            51
+CS              10
+D/C             9
+RST             NOT CONNECTED
+Lite            NOT CONNECTED
+Y+              A2 (analog pin)
+X+              4  (digital pin)
+Y-              5  (digital pin)
+X-              A3 (analog pin)
+IM0 - IM3       NOT CONNECTED (they expect a 3.3v signal, DON'T CONNECT!)
+CCS             6
+CD              NOT CONNECTED
