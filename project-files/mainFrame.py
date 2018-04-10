@@ -125,3 +125,7 @@ def main():
 
 if __name__ == '__main__':
 	main()
+	g1, g2 = setup()
+	graph_for_viz = graph.Graph(set(g1.nodes), g1.connect)
+	# render the graph.....
+	renderGraph(graph_for_viz)
