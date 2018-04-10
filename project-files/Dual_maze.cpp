@@ -242,7 +242,7 @@ void Menu(){
   tft.setTextSize(4);
   tft.setCursor(120,120);
   tft.print("Ready");
-  /*
+
   while(true){
     //waiting on other player screen
     Serial3.print('A');//let the other player know you are ready
@@ -253,7 +253,7 @@ void Menu(){
     } //is other ready?
 
   }
-  */
+
     //wait until they are ready (sending im ready while you check)
 
 
@@ -263,7 +263,7 @@ void Menu(){
 
 int main() {
   setup();
-  //autoHandshake();
+    autoHandshake();
     while (true) {
         Menu();
 
