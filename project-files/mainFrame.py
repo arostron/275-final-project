@@ -62,7 +62,12 @@ def oldproduceVisableGraph(tree):
 
 def renderGraph(g):
 	"""
-	Bring up a PDF of the given graph g
+	current way to do it 
+	y_n = input("visualize g1? (y/n): ")
+	if y_n == 'y':
+		graph_for_viz = graph.Graph(set(g1.nodes), g1.connect)
+		# render the graph.....
+		renderGraph(graph_for_viz)
 	"""
 
 	# the old way of redering graphs
@@ -95,11 +100,6 @@ def main():
 			g1, g2 = setup(map_file)
 
 		# MetaBush's established
-		y_n = input("visualize g1? (y/n): ")
-		if y_n == 'y':
-			graph_for_viz = graph.Graph(set(g1.nodes), g1.connect)
-			# render the graph.....
-			renderGraph(graph_for_viz)
 
 		# run the fast solver
 		_ = input("About to run (quick) solver.py, press enter to continue")
@@ -125,7 +125,3 @@ def main():
 
 if __name__ == '__main__':
 	main()
-	g1, g2 = setup()
-	graph_for_viz = graph.Graph(set(g1.nodes), g1.connect)
-	# render the graph.....
-	renderGraph(graph_for_viz)
