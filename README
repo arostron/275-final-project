@@ -1,0 +1,140 @@
+Student: Alex Rostron
+ID: 1495594
+CCID: rostron
+Student: Joshua Derkson
+ID: 1497709
+CCID: jgderkson
+
+Project: DUAL MAZE SOLVER
+
+-------------------- Description --------------------
+
+Dual Maze solver is an extension of our old CMPUT 274 project called “Dual maze”. In dual maze, two mazes are displayed on two different arduino screens and players must cooperate to open color coded doors with switches and pressure plates. For our CMPUT 275 final project we decided to check if a given maze was even solvable or not. We did this by parsing the original Map.h files used in our 274 project, converting those map files to a ‘meta bush’ object, then running a solver on those meta bush objects. The solvability depends on the states of given doors in the mazes. There are 8 colours of doors possible in the mazes. Each colour has corresponding switches, doors, pressure plates (buttons), and inverted doors. All colours are linked across rooms. If a blue buttons is toggled in one room, all of the doors in both rooms will also toggle. The Solvability of a maze depends on the specific location of doors, buttons, switches, walls, and the colour-state variables which dictate the open-ness of doors.  
+
+For example, if a blue door is blocking the exit, then at some this blue door needs to be opened in such a way which allows both players to escape. Even though many blue switches may exist in the maze, it might not be possible to flip the switches and buttons in such an order that the players are able to open the blue door escape the maze. 
+
+Dual Maze Solver is entirely written in python and does not require any C++ files to run other than the .h file containing the maps. All of the original 274 project files have been included to allow the markers to play the game and better understand the problem at hand. The C++ files are not intended to be marked as they were written last semester, only python files were written for this project.  
+
+The main file of our project is called mainFrame.py. In this file a simple command line menu is prompts the user with a series of questions. These questions are to be answered with a ‘y’ character if the user wants to answer with a yes, in most cases any other input will be considered as the negative response. To run this file simply type python3 mainFrame.py into the command line, this will pull up the simple command line interface. 
+
+* for more description of the individual functionality of each file see the class/function descriptions
+
+
+-------------------- Map Files --------------------
+
+There are a number of maps included in this file submission. It is recommended that markers test all of these maps using the simple interface. To test say Map_false.h simply type in ‘Map_false.h’ when prompted with “Name of map file: ”. To actually play the different maps markers will need to modify line 10 of Dual_maze.cpp (#include “Map.h” changed to #include “true.h”). 
+
+- Map.h
+	- The original map used in the 274 project. This map was hand-created by Josh. It is possible to solve this map, Alex and Josh have done so. 
+	- Dual_maze.cpp includes this Map.h file, this map should show up when uploads are made to the arduino
+- Map_false.h
+	- An exact copy of Map.h except one critical blue switch has been removed
+	- There are still blue buttons in the maze however it is impossible to escape now that the specific blue switch has been removed. 
+- Smush.h
+	- A simple map which appears to be solvable but isn't
+	- It is impossible to solve this map without killing a player
+- False.h
+	- A very simple map which is impossible to solve 
+- True.h
+	- A very simple map which is solvable 
+
+
+
+-------------------- mainFrame.py --------------------
+
+There are a number of things which this menu can do.
+
+- Randomly generate map files ending in .h. 
+	- The Dual_maze.cpp can be modified later on to include the newly generated map file so that players may play the random map they generated. 
+	- A python script exists to randomly generate maps which may or may not be solvable
+ 
+- Check the solvability of a given map (This is the main purpose of the project). 
+	- The user will be prompted to enter the name of a map file (ex Map.h). Directly after entering the name of the map file two ‘meta bushes’ are created. These are the custom object representation 	of each player's maze, they are fairly similar to a graph. 
+	- Once meta bush objects have been created the program waits until the user inputs something then runs the solver. The solver will return will either return True or False depending on whether or 	not the mazes are solvable. The time is takes to calculate these true false values is also displayed for the user.
+- Render a graphical representation of either players room in the maze. 
+	- The visualised graph contains nodes consisting of coordinate pairs, and the arrows indicate the adjacent tiles to any given node
+	- This graph would be a perfect grid if two factors had not been taken into account.
+		- Walls tiles are not include in this graph which is why some nodes have less than 4 connections
+		- Grass adjacent grass tiles are considered one tile, which is why some tiles have more than 4 adjacent tiles dispide the player only being able to move left right up or down. 
+- Finally the user is asked if they would like to repeat the above steps
+  
+
+
+
+-------------------- Acknowledgements and Assumptions --------------------
+
+- We took inspiration from the Fireboy and Watergirl series for the game mechanics. 
+- The graph.py file was imported from the CMPUT 275 public directory and modified to reduce the runtime of the neighbours() function. 
+- Zac Friggstad also gave us some verbal suggestions as to how to go about solving the problem, which we modified to best fit our solution
+- Bit.py was copied from https://wiki.python.org/moin/BitManipulation and is used for basic integer bitwise operations 
+
+
+
+--------------------------- OLD 274 Description ----------------------- 
+
+Dual maze is a co-op game where you and a friend are trapped in two rooms! Both
+players need to escape before time runs out! but beware, each room is full of
+doors, switches, and pressure plates. There are many different colours of
+pressure plates and switches, each colour of switch is linked controlling
+doors in both players rooms. Players must work together to untangle the
+collection of doors without smashing the other player in the process! 
+
+A handshake is in place to ensure that both arduinos are in sync when both players
+are ready. Since this project involves two arduinos with separate screens a
+careful handshake and data transfer were the main challenge of this project after
+the game mechanics of player movement, doors, switches, pressure plates, and
+player death had been flushed out. All arduino graphics were done my Josh.
+
+How to run the game:
+
+First connect two arduinos to the computer using arduino-port-select. Next make uploads to both arduinos using make upload-0 and make upload-1. Now that the project is downloaded on the arduinos the handshake should kick in. Initially an arduino has a black screen. Once connection has been established the project title will appear on both screens. Once a player is ready he may click his/her joystick. The word ready should appear on his screen. Once both players are ready the map will load and the game starts! You will need to cooperate and open doors by stepping on switches and pressure plates to open doors. Stepping on a pressure plate changes all doors of that given color in both mazes. Stepping on a switch flips it and changes all doors of that color. Stepping off a switch will not change doors. Some doors are inverted, meaning they may be the same color but will be open when other doors of the same color are closed. Both players are trying to get to the rainbow tile located somewhere in the maze. 
+
+
+
+-------------------- Wiring Description --------------------
+
+Accessories:
+* Arduino Mega Board (AMG) x2
+* Adafruit ILI9341 x2
+* joystick x2
+
+Arduino Wiring instructions:(Not required for project but help verify game mechanics)
+
+|communication instructions|
+*(same as in class encryption)
+* 5v <--> Arduino#1 pin 13
+* GND <--> Arduino#2 pin 13
+* Arduino#2 TX3 <--> Arduino#1 RX3
+* Arduino#2 TX3 <--> Arduino#1 RX3
+
+|Joystick instructions|(both Arduinos)
+
+* Joystick VRx <--> Arduino A1
+* Joystick VRy <--> Arduino A0
+* Joystick SW  <--> Arduino 2
+* Joystick +5v <--> Arduino 5v
+* Joystick GND <--> Arduino GND
+
+|Adafruit instructions| (both Arduinos)
+
+Board Pin <---> Arduino Pin
+===========================
+GND             GND
+Vin             5V
+3Vo             NOT CONNECTED
+CLK             52
+MISO            50
+MOSI            51
+CS              10
+D/C             9
+RST             NOT CONNECTED
+Lite            NOT CONNECTED
+Y+              A2 (analog pin)
+X+              4  (digital pin)
+Y-              5  (digital pin)
+X-              A3 (analog pin)
+IM0 - IM3       NOT CONNECTED (they expect a 3.3v signal, DON'T CONNECT!)
+CCS             6
+CD              NOT CONNECTED
+
+
