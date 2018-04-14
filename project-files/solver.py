@@ -2,10 +2,6 @@ from classDef import *
 from mainFrame import *
 from queue import deque as Q
 import bit
-from random import randint
-from graph import Graph
-import breadth_first_search
-
 
 def checkMazes(g1, g2):
     """
