@@ -60,7 +60,7 @@ def main():
 		start = time.clock()
 		print("Maps solveable?:", solver.checkMazes(g1, g2))
 		print("Time Elapsed:", time.clock()-start)
-		print()g
+		print()
 
 		y_n = input("Again? (y/n): ")
 		if y_n != 'y':
