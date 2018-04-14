@@ -42,13 +42,14 @@ uint8_t map1[2][16][12] = ((
 
 def createMapFileRandom(w=16,h=12):
     """
-    randomly generates a map.h file, returns the name of the file (mapXXXX.h)
+    Randomly generates a map.h file, returns the name of the file (MapXXXX.h)
+    This randomly generated maze file could be solveable or unsolvable.
+    map naming is simply random, there is no see generation usedself.
+
+    Map generation works by selecting a set of vaid tiles, then .formats
+    those tile (integer values representing different tiles) into a default
+    template for map files.
     """
-    #VALID TILES ARE...
-    #3,4,5 endings
-    # 6,7 start
-    #100 on 4s
-    # 3,4,5,7,6,2,0,1 ten's
 
     valid_tiles = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', \
      '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', \
@@ -76,6 +77,7 @@ def createMapFileRandom(w=16,h=12):
     mapString = mapString.replace('(', '{')
     mapString = mapString.replace(')', '}')
 
+    # generate map file with random name and selected tiles
     title = "Map{}.h".format(randint(1111,9999))
     with open(title,'w') as file:
         file.write(mapString)
