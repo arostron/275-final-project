@@ -62,7 +62,7 @@ def oldproduceVisableGraph(tree):
 
 def renderGraph(g):
 	"""
-	current way to do it 
+	current way to do it
 	y_n = input("visualize g1? (y/n): ")
 	if y_n == 'y':
 		graph_for_viz = graph.Graph(set(g1.nodes), g1.connect)
@@ -108,15 +108,6 @@ def main():
 		print("Maps solveable?:", solver.checkMazes(g1, g2))
 		print("Time Elapsed:", time.clock()-start)
 		print()
-
-		# prompt to run the slow solver
-		y_n = input("Check solveable with slow algorithm? (y/n): ")
-		if y_n == 'y':
-			print()
-			start = time.clock()
-			solver.slowCheckMazes(g1, g2)
-			print("Time Elapsed:", time.clock()-start)
-			print()
 
 		y_n = input("Again? (y/n): ")
 		if y_n != 'y':
