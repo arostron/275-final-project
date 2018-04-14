@@ -28,18 +28,18 @@ def getRawMap(filename="Map.h"):
         #chop of first 3 lines
         first_line = file.readline()
 
-        # REALLY BAD STRIPPING OF NUMBERE COULD BE OPTIMIZED
+        # strip off brackets and allow for extraction of w and h
 
-        while not first_line[-1].isnumeric(): # clear off right till number
+        while not first_line[-1].isnumeric():
             first_line = first_line[:-1]
 
-        while not first_line[0].isnumeric(): #
+        while not first_line[0].isnumeric():
             first_line = first_line[1:]
         first_line = first_line[1:]
-        while not first_line[0].isnumeric(): #
+        while not first_line[0].isnumeric():
             first_line = first_line[1:]
         first_line = first_line[1:]
-        while not first_line[0].isnumeric(): #
+        while not first_line[0].isnumeric():
             first_line = first_line[1:]
         first_line = first_line[1:]
         while not first_line[0].isnumeric(): # clear off first 3 left numbers
@@ -49,7 +49,7 @@ def getRawMap(filename="Map.h"):
         height = int(first_line[-2:])
         #print("w:{}, h:{}".format(width,height))
 
-        # width and height parsed
+        # width and height parsed and file cleaned up
 
         parsed_map_line = []
         map_array1 = []
