@@ -84,6 +84,13 @@ class Graph:
             raise ValueError("An endpoint is not in graph")
         self.edges.append(e)
 
+        if e[0] not in neighbour:
+            #initialize neighbour list
+            neighbour[e[0]] = []
+        # append new neighbour 
+        neighbour[e[0]].append(e[1])
+
+
     def is_vertex(self, v):
         """
         Check if vertex v is in the graph.
