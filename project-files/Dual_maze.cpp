@@ -7,7 +7,7 @@
 //#include <stdlib.h> //abs()
 
 #include "Drawing.h"
-#include "Map.h"
+#include "Map.h" //****** EDIT THIS LINE TO PLAY DIFFERENT MAPS
 #include "initHand.h"
 
 Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC);
