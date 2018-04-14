@@ -68,6 +68,12 @@ def main():
 			# render the graph.....
 			renderGraph(graph_for_viz)
 
+		y_n = input("visualize player 2's map? (y/n): ")
+		if y_n == 'y':
+			graph_for_viz = graph.Graph(set(g2.nodes), g2.connect)
+			# render the graph.....
+			renderGraph(graph_for_viz)
+
 		y_n = input("Again? (y/n): ")
 		if y_n != 'y':
 			return
