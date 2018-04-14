@@ -29,6 +29,7 @@ def checkMazes(g1, g2):
         #pop the queue
         curr = q.popleft()
         A, B, State = curr[0], curr[1], curr[2]
+        OG_State = State
         #break the if you find the end
         if A == g1.end and B == g2.end:
             return True
@@ -46,6 +47,7 @@ def checkMazes(g1, g2):
         connect1, connect2 = Anode.connect, Bnode.connect
         #for each connection tuple in connection list
         for des in connect1:
+            State = OG_State
             #get the node of the destination
             des_node = g1.translate[des]
 
@@ -85,6 +87,7 @@ def checkMazes(g1, g2):
 
         # moving off of B
         for des in connect2:
+            State = OG_State
             des_node = g2.translate[des]
             if isinstance(Bnode,Button):
                 if isinstance(des_node,Door):
