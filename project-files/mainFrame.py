@@ -62,6 +62,12 @@ def main():
 		print("Time Elapsed:", time.clock()-start)
 		print()
 
+		y_n = input("visualize player 1's map? (y/n): ")
+		if y_n == 'y':
+			graph_for_viz = graph.Graph(set(g1.nodes), g1.connect)
+			# render the graph.....
+			renderGraph(graph_for_viz)
+
 		y_n = input("Again? (y/n): ")
 		if y_n != 'y':
 			return
